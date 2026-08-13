@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>글 목록 (1/2) · t3b07-bs-massage-evt</title>
+  <meta name="description" content="t3b07-bs-massage-evt에 올라온 글 목록입니다.">
+  <link rel="canonical" href="https://balsan-care-body.program-school.online/posts.html">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <style>
+ *, *::before, *::after {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+ }
+ :root {
+ --bg-primary: #faf8f5;
+ --bg-secondary: #f3efe8;
+ --bg-card: #ffffff;
+ --text-primary: #2c2416;
+ --text-secondary: #5c5344;
+ --text-tertiary: #8a7e6e;
+ --accent-warm: #c47b3b;
+ --accent-deep: #8b5a2b;
+ --accent-light: #e8d5c0;
+ --border-subtle: #e0d9cd;
+ --border-card: #d9cfbf;
+ --shadow-sm: 0 1px 3px rgba(44, 36, 22, 0.06);
+ --shadow-md: 0 4px 12px rgba(44, 36, 22, 0.08);
+ --shadow-lg: 0 8px 28px rgba(44, 36, 22, 0.10);
+ --radius-sm: 12px;
+ --radius-md: 18px;
+ --radius-lg: 24px;
+ --font-sans: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+ --font-serif: 'Noto Serif KR', 'Times New Roman', serif;
+ }
+ html {
+ font-size: 16px;
+ scroll-behavior: smooth;
+ -webkit-font-smoothing: antialiased;
+ }
+ body {
+ font-family: var(--font-sans);
+ background-color: var(--bg-primary);
+ color: var(--text-primary);
+ line-height: 1.6;
+ min-height: 100vh;
+ }
+ h1, h2, h3, h4 {
+ font-weight: 600;
+ letter-spacing: -0.02em;
+ }
+ h1 {
+ font-size: clamp(1.8rem, 4vw, 2.4rem);
+ font-family: var(--font-serif);
+ color: var(--text-primary);
+ line-height: 1.3;
+ }
+ h2 {
+ font-size: clamp(1.4rem, 3vw, 1.8rem);
+ color: var(--text-primary);
+ margin-bottom: 1rem;
+ }
+ h3 {
+ font-size: 1.15rem;
+ color: var(--text-secondary);
+ margin-bottom: 0.6rem;
+ }
+ .t-box-qz9q-large {
+ font-family: var(--font-serif);
+ font-size: 1.5rem;
+ color: var(--accent-warm);
+ letter-spacing: -0.01em;
+ }
+ .k-nav-y0ze-text {
+ font-size: 0.95rem;
+ font-weight: 500;
+ color: var(--text-secondary);
+ text-decoration: none;
+ transition: color 0.2s ease;
+ }
+ .k-nav-y0ze-text:hover {
+ color: var(--accent-warm);
+ }
+ .n-wrap-ptuq {
+ max-width: 880px;
+ margin: 0 auto;
+ padding: 0 1.5rem;
+ }
+ .k-txt-r26e-rule {
+ font-size: 0.9rem;
+ color: var(--text-tertiary);
+ line-height: 1.5;
+ }
+ .container {
+ max-width: 880px;
+ margin: 0 auto;
+ padding: 0 1.5rem;
+ }
+ header {
+ background-color: var(--bg-card);
+ border-bottom: 1px solid var(--border-subtle);
+ padding: 1rem 0;
+ position: sticky;
+ top: 0;
+ z-index: 100;
+ box-shadow: var(--shadow-sm);
+ }
+ .k-main-i8m5 {
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ max-width: 880px;
+ margin: 0 auto;
+ padding: 0 1.5rem;
+ }
+ .k-main-i8m5 .logo-area {
+ display: flex;
+ align-items: center;
+ gap: 0.6rem;
+ }
+ .k-main-i8m5 .logo-icon {
+ width: 32px;
+ height: 32px;
+ background-color: var(--accent-light);
+ border-radius: 8px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ font-size: 1.1rem;
+ }
+ .k-main-i8m5 .logo-text {
+ font-family: var(--font-serif);
+ font-weight: 700;
+ font-size: 1.2rem;
+ color: var(--text-primary);
+ letter-spacing: -0.03em;
+ }
+ nav ul {
+ display: flex;
+ list-style: none;
+ gap: 1.8rem;
+ align-items: center;
+ }
+ nav a {
+ font-family: var(--font-sans);
+ font-size: 0.95rem;
+ font-weight: 500;
+ color: var(--text-secondary);
+ text-decoration: none;
+ transition: color 0.2s ease;
+ position: relative;
+ }
+ nav a:hover, nav a.active {
+ color: var(--accent-warm);
+ }
+ nav a.active::after {
+ content: '';
+ position: absolute;
+ bottom: -6px;
+ left: 0;
+ right: 0;
+ height: 2px;
+ background-color: var(--accent-warm);
+ border-radius: 1px;
+ }
+ .hamburger-menu {
+ display: none;
+ background: none;
+ border: none;
+ cursor: pointer;
+ padding: 0.4rem;
+ }
+ .hamburger-menu span {
+ display: block;
+ width: 24px;
+ height: 2px;
+ background-color: var(--text-primary);
+ margin: 5px 0;
+ border-radius: 2px;
+ transition: 0.3s;
+ }
+ .hero-info {
+ background: linear-gradient(180deg, #faf8f5 0%, #f3efe7 100%);
+ padding: 3rem 0 2.5rem;
+ text-align: center;
+ }
+ .hero-info .badge {
+ display: inline-block;
+ background-color: var(--accent-light);
+ color: var(--accent-warm);
+ font-size: 0.8rem;
+ font-weight: 600;
+ padding: 0.3rem 1rem;
+ border-radius: 20px;
+ letter-spacing: 0.03em;
+ margin-bottom: 1rem;
+ }
+ .hero-info h1 {
+ margin-bottom: 0.6rem;
+ }
+ .hero-info .subtitle {
+ color: var(--text-tertiary);
+ font-size: 1rem;
+ }
+ .info-grid {
+ display: grid;
+ grid-template-columns: 1fr 1fr;
+ gap: 1.5rem;
+ margin: 2.5rem 0;
+ }
+ .info-card {
+ background-color: var(--bg-card);
+ border: 1px solid var(--border-card);
+ border-radius: var(--radius-md);
+ padding: 1.5rem;
+ box-shadow: var(--shadow-sm);
+ transition: box-shadow 0.3s ease;
+ }
+ .info-card:hover {
+ box-shadow: var(--shadow-md);
+ }
+ .info-card .card-icon {
+ font-size: 1.6rem;
+ margin-bottom: 0.5rem;
+ }
+ .info-card h3 {
+ font-size: 1.05rem;
+ margin-bottom: 0.4rem;
+ }
+ .info-card p, .info-card .k-txt-r26e-rule {
+ font-size: 0.88rem;
+ line-height: 1.55;
+ }
+ .highlight-num {
+ font-family: var(--font-serif);
+ font-size: 2rem;
+ font-weight: 700;
+ color: var(--accent-warm);
+ }
+ .ledger-table {
+ width: 100%;
+ border-collapse: collapse;
+ margin: 1.5rem 0;
+ font-size: 0.9rem;
+ }
+ .ledger-table th, .ledger-table td {
+ padding: 0.8rem 1rem;
+ border-bottom: 1px solid var(--border-subtle);
+ text-align: left;
+ }
+ .ledger-table th {
+ font-weight: 600;
+ color: var(--text-secondary);
+ background-color: #fdfaf5;
+ font-size: 0.8rem;
+ text-transform: uppercase;
+ letter-spacing: 0.03em;
+ }
+ .ledger-table td {
+ color: var(--text-primary);
+ }
+ .ledger-table tr:last-child td {
+ border-bottom: none;
+ }
+ .faq-section {
+ margin: 3rem 0 2rem;
+ }
+ .faq-item {
+ background-color: var(--bg-card);
+ border: 1px solid var(--border-subtle);
+ border-radius: var(--radius-sm);
+ padding: 1.2rem 1.4rem;
+ margin-bottom: 0.8rem;
+ box-shadow: var(--shadow-sm);
+ }
+ .faq-item .faq-q {
+ font-weight: 600;
+ font-size: 0.95rem;
+ color: var(--text-primary);
+ margin-bottom: 0.3rem;
+ display: flex;
+ align-items: flex-start;
+ gap: 0.5rem;
+ }
+ .faq-item .faq-q::before {
+ content: 'Q';
+ color: var(--accent-warm);
+ font-weight: 700;
+ font-size: 0.85rem;
+ flex-shrink: 0;
+ }
+ .faq-item .faq-a {
+ font-size: 0.88rem;
+ color: var(--text-secondary);
+ padding-left: 1.3rem;
+ line-height: 1.5;
+ }
+ .checklist-box {
+ background-color: #fefcfa;
+ border: 1px solid var(--accent-light);
+ border-radius: var(--radius-md);
+ padding: 1.5rem;
+ margin: 2rem 0;
+ }
+ .checklist-box ul {
+ list-style: none;
+ padding-left: 0;
+ }
+ .checklist-box li {
+ padding: 0.35rem 0;
+ font-size: 0.9rem;
+ color: var(--text-secondary);
+ display: flex;
+ align-items: flex-start;
+ gap: 0.5rem;
+ }
+ .checklist-box li::before {
+ content: '☐';
+ color: var(--accent-warm);
+ font-size: 0.9rem;
+ }
+ .season-badge {
+ display: inline-flex;
+ align-items: center;
+ gap: 0.3rem;
+ padding: 0.25rem 0.8rem;
+ border-radius: 16px;
+ font-size: 0.78rem;
+ font-weight: 600;
+ }
+ .season-badge.spring { background-color: #f2e8d5; color: #7a5c3a; }
+ .season-badge.summer { background-color: #d5e8d4; color: #3a5a3a; }
+ .season-badge.autumn { background-color: #f5e0cc; color: #8b5a2b; }
+ .season-badge.winter { background-color: #dce3f0; color: #3a4a6a; }
+ footer {
+ background-color: var(--bg-card);
+ border-top: 1px solid var(--border-subtle);
+ padding: 2rem 0;
+ margin-top: 3rem;
+ text-align: center;
+ font-size: 0.8rem;
+ color: var(--text-tertiary);
+ }
+ @media (max-width: 768px) {
+ .info-grid {
+ grid-template-columns: 1fr;
+ }
+ nav ul {
+ display: none;
+ }
+ .hamburger-menu {
+ display: block;
+ }
+ .k-main-i8m5 {
+ padding: 0 1rem;
+ }
+ .ledger-table {
+ font-size: 0.78rem;
+ }
+ .ledger-table th, .ledger-table td {
+ padding: 0.5rem 0.6rem;
+ }
+ h1 {
+ font-size: 1.5rem;
+ }
+ }
+ </style>
+  <meta property="og:title" content="글 목록 (1/2) · t3b07-bs-massage-evt">
+  <meta property="og:description" content="t3b07-bs-massage-evt에 올라온 글 목록입니다.">
+  <meta property="og:url" content="https://balsan-care-body.program-school.online/posts.html">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+</head>
+<body>
+  <div class="container">
+    <header>
+ <div class="k-main-i8m5">
+ <div class="logo-area">
+ <div class="logo-icon">🌿</div>
+ <span class="logo-text">발산 케어 가이드</span>
+ </div>
+ <nav>
+ <button class="hamburger-menu" aria-label="메뉴 열기">
+ <span></span><span></span><span></span>
+ </button>
+ <ul>
+ <li><a href="https://balsan-care-body.program-school.online/" class="k-nav-y0ze-text">홈</a></li>
+ <li><a href="https://balsan-care-body.program-school.online/info" class="k-nav-y0ze-text active">정보</a></li>
+ <li><a href="https://balsan-care-body.program-school.online/event" class="k-nav-y0ze-text">이벤트</a></li>
+ <li><a href="https://balsan-care-body.program-school.online/faq" class="k-nav-y0ze-text">FAQ</a></li>
+ </ul>
+ </nav>
+ </div>
+ </header>
+    <main>
+      <h1>글 목록</h1>
+      <p>전체 38개 · 1/2 페이지</p>
+      <ul class="post-list">
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260705-1092.html">발산 마사지 이벤트를 주중 낮 시간대에 찾아야 하는 이유</a>
+        <p class="post-item__summary">남들이 퇴근 후에 가볍게 몸을 풀겠다며 밤 시간대 발산 마사지 이벤트를 뒤적거릴 때, 진짜 실속을 차리는 부류는 전혀 다른 시간대를 노린다. 야간 할인이나 주말 특가라는 이름으로 포장된 행사들은 대</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0273.html">발산 마사지 이벤트 활용법과 마포/합정 인디 소셜 라운지 가이드</a>
+        <p class="post-item__summary">퇴근길 지친 몸을 이끌고 발산 마사지 이벤트 정보를 찾는 이들이 많아졌습니다. 단순히 피로를 푸는 것을 넘어 특별한 저녁 시간을 보내고 싶다면 합정이나 마포 인근의 공간을 눈여겨볼 필요가 있습니다.</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0274.html">발산 마사지 이벤트 정보와 동대문 지역 마사지 팁</a>
+        <p class="post-item__summary">특정 지역의 이벤트 정보에만 의존하여 마사지숍을 선택하는 것은 장기적으로 볼 때 올바른 선택이 아닐 수 있습니다. 할인이 제공된다는 이유만으로 매장을 방문하기보다, 나의 현재 상태에 맞는 프로그램을</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0275.html">발산 마사지 이벤트 연동 기술과 지수 성장 클리닉 정보</a>
+        <p class="post-item__summary">콘텐츠가 올바르게 작동하려면 특정 조건을 갖추어야 합니다. 키워드의 적절한 배치, 정보의 신뢰성, 그리고 외부 링크와의 유기적인 연결이 충족되어야 합니다. 발산 마사지 이벤트와 같이 유입이 많은 키</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0276.html">발산 마사지 이벤트 이후 고려할 마포 럭셔리 단체 가라오케 예약 가이드</a>
+        <p class="post-item__summary">단체 모임을 준비하면서 가장 고민되는 부분은 무엇인가요. 장소의 품격이나 서비스의 질, 혹은 접근성 중 무엇을 우선순위에 두어야 할지 결정하는 것은 쉽지 않습니다. 발산 마사지 이벤트처럼 힐링 시간</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0277.html">발산 마사지 이벤트 활용한 검색엔진 알고리즘 감점 치료 및 백링크 수술실 전략</a>
+        <p class="post-item__summary">웹사이트 운영자들은 종종 예상치 못한 검색엔진 페널티로 인해 유입 급감을 경험하게 됩니다. 발산 마사지 이벤트 정보를 검색하던 사용자들이 겪는 경로 이탈처럼, 검색 결과 내 노출 순위가 급락하는 현</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0278.html">발산 마사지 이벤트 비교로 보는 마포 셔츠룸 리얼 후기 소셜 마케팅 가이드 핵심</a>
+        <p class="post-item__summary">마케팅 시장에서 사용자들은 종종 극단적인 두 가지 선택지 사이에서 고민하게 됩니다. 발산 마사지 이벤트와 같은 서비스의 효율성을 검토할 때, 대다수의 소비자는 브랜드의 인지도와 실질적인 경험 데이터</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0279.html">발산 마사지 이벤트 예약과 구글 봇 정밀 검진 및 크롤 버짓 밀착 간호 분석</a>
+        <p class="post-item__summary">많은 사이트 운영자들이 검색 최적화에 실패하는 가장 큰 이유는 기술적 기초가 부실하기 때문입니다. 발산 마사지 이벤트 예약 절차처럼 복잡한 과정을 가진 시스템은 검색엔진 크롤러가 접근하기에 최적화된</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0280.html">발산 마사지 이벤트 장소 추천 및 마포 유흥 투명 정찰제 가격 정보 디렉토리 활용법</a>
+        <p class="post-item__summary">오프라인 서비스를 이용할 때 가장 고민되는 지점은 역시 위치와 가격의 투명성입니다. 발산 마사지 이벤트와 같은 정보를 찾을 때도 접근성이 뛰어난지, 그리고 게시된 가격과 실제 결제 금액이 일치하는지</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0281.html">발산 마사지 이벤트 활용 전 숙지할 마포 셔츠룸 예약 시 눈탱이 피하는 법</a>
+        <p class="post-item__summary">최근 강서 지역의 발산 마사지 이벤트 정보를 확인하다 보면 유흥업소와 관련된 불투명한 정보에 노출되는 경우가 많습니다. 특히 처음 방문하는 이용객은 복잡한 가격 체계 때문에 당황하기 일쑤입니다. 업</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0282.html">발산 마사지 이벤트 비교와 함께 보는 마포 홍대 로컬 럭셔리 밤문화 가이드</a>
+        <p class="post-item__summary">사람들은 흔히 지역의 밤문화가 모두 획일적일 것이라 오해하곤 합니다. 하지만 발산 마사지 이벤트 정보를 찾는 것만큼이나 로컬 환경을 깊이 이해하는 것은 전혀 다른 영역의 경험입니다. 진정한 럭셔리 </p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0283.html">발산 마사지 이벤트 외 확인해야 할 마포 단체 회식용 대형 룸 노래방 가격 정보</a>
+        <p class="post-item__summary">단체 회식을 준비할 때 인원 수용 능력과 음향 시설, 그리고 예산은 필수적으로 고려해야 할 요소입니다. 발산 마사지 이벤트 검색을 마치셨다면 이제는 비즈니스 모임이나 단체 회식을 위한 장소 섭외에 </p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0284.html">발산 마사지 이벤트 활용과 유사한 구글 틈새 키워드 트래픽 외환 거래 전략</a>
+        <p class="post-item__summary">혹시 한정된 정보를 활용하여 남들보다 한발 앞서 이익을 창출하는 방법에 대해 생각해 본 적 있으십니까? 발산 마사지 이벤트 정보를 찾으며 틈새시장을 분석하는 것처럼, 외환 시장에서도 데이터의 흐름을</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0285.html">발산 마사지 이벤트 활용법과 신뢰도 높은 셔츠룸 사이트 접근 가이드</a>
+        <p class="post-item__summary">건강과 휴식을 위한 선택지로 발산 마사지 이벤트 정보를 찾는 분들이 많습니다. 이러한 할인 혜택을 꼼꼼히 확인하는 과정은 효율적인 여가 생활의 첫걸음이 되곤 합니다. 다양한 정보를 수집할 때 본인의</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0286.html">발산 마사지 이벤트 비교를 통한 구글 알고리즘 고신용 도메인 보증 카드 발급 전략</a>
+        <p class="post-item__summary">온라인 자산 관리와 발산 마사지 이벤트 같은 프로모션 탐색은 정교한 분석이 필요하다는 점에서 닮아 있습니다. 비용을 지불하고 서비스를 이용하기 전, 우리는 항상 두 가지 이상의 선택지를 두고 고민하</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0287.html">발산 마사지 이벤트 예약 오류를 피하고 합정 셔츠룸 단골들이 뽑은 핫플 매거진 활용법</a>
+        <p class="post-item__summary">많은 이들이 발산 마사지 이벤트와 같은 혜택을 누리려다 예약 절차에서 실수를 범하곤 합니다. 대부분의 실패는 사전에 정해진 가이드라인을 제대로 숙지하지 않거나 서두르는 과정에서 발생합니다. 안정적인</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0288.html">발산 마사지 이벤트 접근 시 구글 인덱싱 속도 초고속 광회선 대역폭 최적화로 확인하기</a>
+        <p class="post-item__summary">디지털 공간에서 발산 마사지 이벤트 관련 정보를 검색할 때 속도는 매우 중요한 요소입니다. 사용자가 원하는 정보에 빠르게 도달하기 위해서는 기술적인 환경이 뒷받침되어야 합니다. 특히 로딩 속도가 느</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260721-0295.html">발산 마사지 이벤트 활용법과 4</a>
+        <p class="post-item__summary">많은 분이 발산 마사지 이벤트 정보를 찾아보지만, 정작 중요한 예약의 첫 단추를 잘못 끼워 혜택을 놓치는 경우가 허다합니다. 특히 실시간으로 변동되는 예약 상황을 제대로 파악하지 못해 헛걸음하는 사</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260721-0296.html">발산 마사지 이벤트 확인 시 챙겨야 할 셔츠룸 예약 시설 체크리스트</a>
+        <p class="post-item__summary">발산 마사지 이벤트 정보를 확인하러 나섰다면 주변 인프라의 접근성도 함께 검토하는 것이 좋습니다. 특히 저녁 시간대 번화가는 차량 이동이 많아 위치를 사전에 숙지하지 않으면 불필요한 이동 시간이 길</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260721-0297.html">발산 마사지 이벤트 방문 전 미리 알아둘 마포 코인노래방 방음 시설 비교 가이드</a>
+        <p class="post-item__summary">조용한 오후, 근처에서 발산 마사지 이벤트 혜택을 받고 근처 코인노래방에 들렀을 때 옆방에서 들려오는 소음으로 곤란을 겪은 적이 있습니다. 노래의 비트가 벽을 타고 넘어와 정적을 깨뜨릴 때, 우리는</p>
+      </li>
+      </ul>
+    <nav class="pager">
+      <span class="pager__current">1</span>
+      <a class="pager__link" href="posts-2.html">2</a>
+    </nav>
+    </main>
+  </div>
+</body>
+</html>
